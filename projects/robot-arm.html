@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice Controlled Robot Arm | Edward Johnson</title>
+  <meta name="description" content="A 3D-printed robotic arm that takes spoken commands, processed on a Raspberry Pi and sent to an Arduino over serial.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css?v=4">
+</head>
+<body data-page="">
+
+  <header class="site-header">
+    <nav class="container nav" aria-label="Main">
+      <a href="../index.html" class="logo">EJ<span>_</span></a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="../index.html" data-nav="home">Home</a></li>
+        <li><a href="../electronics.html" data-nav="electronics">Electronics</a></li>
+        <li><a href="../3d-printing.html" data-nav="3d-printing">3D Printing</a></li>
+        <li><a href="../programming.html" data-nav="programming">Programming</a></li>
+        <li><a href="../finished-projects.html" data-nav="finished">Finished Projects</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="project-hero">
+      <div class="container">
+        <div class="path"><a href="../index.html">~</a> / projects / robot-arm</div>
+        <h1>Voice Controlled Robot Arm</h1>
+        <p class="lede">A robotic arm I designed in Fusion 360, 3D printed, and wired myself. It moves when I speak to it: a Raspberry Pi turns my voice into text and sends it over USB serial to an Arduino, which drives five servo motors.</p>
+        <ul class="chips"><li class="chip green">Arduino</li><li class="chip green">Raspberry Pi</li><li class="chip green">Fusion 360</li><li class="chip green">PySerial</li><li class="chip green">Speech Recognition</li><li class="chip green">3D Printing</li></ul>
+        <div class="spec">
+          <div><span class="k">Timeline</span><span class="v">Mar 2025 – Jun 2025</span></div>
+          <div><span class="k">Status</span><span class="v">Complete</span></div>
+          <div><span class="k">My role</span><span class="v">Solo project: CAD, printing, wiring, code</span></div>
+          <div><span class="k">Tools</span><span class="v">Fusion 360, Arduino, Raspberry Pi, Python, C++</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="writeup">
+        <nav class="toc" aria-label="Sections">
+          <a href="#overview">Overview</a>
+          <a href="#design">CAD &amp; 3D printing</a>
+          <a href="#electronics">Electronics</a>
+          <a href="#code">Software</a>
+          <a href="#testing">Testing</a>
+          <a href="#lessons">Challenges &amp; lessons</a>
+          <a href="#final">Finished project</a>
+        </nav>
+        <article>
+          <section id="overview">
+            <h2>Overview</h2>
+            <p>I wanted to build a robot arm that didn't need a controller. Instead you just tell it where to go. The project combined everything I like doing: mechanical design, 3D printing, electronics, and embedded programming.</p>
+            <div class="flow">
+              <span>Voice command</span><b>&rarr;</b>
+              <span>Raspberry Pi<br>speech recognition</span><b>&rarr;</b>
+              <span>USB serial<br>(PySerial)</span><b>&rarr;</b>
+              <span>Arduino<br>parses command</span><b>&rarr;</b>
+              <span>5 servos move</span>
+            </div>
+            <p>The Raspberry Pi listens through a microphone and turns speech into text with Google's speech recognition. It sends that text to an Arduino Uno over USB. The Arduino matches the text to a command and sets each servo to the position I asked for. Each joint has ten preset positions, 18&deg; apart.</p>
+          </section>
+
+          <section id="design">
+            <h2>CAD &amp; 3D printing</h2>
+            <p>I designed every part in Fusion 360 and printed them. I started with the claw. A servo turns a gear, and the gear opens and closes the two prongs through a pair of linkages. I generated the gears with Fusion's Spur Gear add-in, so I could set the tooth count and size as parameters.</p>
+            <div class="fig-grid">
+              <figure class="fig"><img src="../media/robot-arm/web/cad-claw-v1.jpg" alt="Claw V1 CAD assembly"><figcaption>Claw V1: base, drive gear, joints, and prongs (Mar 2025)</figcaption></figure>
+              <figure class="fig"><img src="../media/robot-arm/web/cad-claw-base-v2.jpg" alt="Updated claw base CAD"><figcaption>Updated claw base with a hole for the motor and a standoff to support it (Apr 2025)</figcaption></figure>
+            </div>
+            <p>Then I worked down the arm: a rotating base driven by a servo, a base arm joint, a middle arm joint, and a wrist. Each joint holds the servo that drives the next one. A few iterations made a big difference:</p>
+            <ul>
+              <li><strong>Straight arm joints (V2):</strong> easier to print, and the arms no longer clip each other as they rotate.</li>
+              <li><strong>Center cutout (V3):</strong> the next joint bolts straight onto the servo horn, so I didn't need an extra bridging part.</li>
+              <li><strong>Redesigned base:</strong> mounts directly to the bottom rotation servo, with a larger opening so the arm servo fits reliably.</li>
+            </ul>
+            <div class="fig-grid">
+              <figure class="fig"><img src="../media/robot-arm/web/cad-rotating-base.jpg" alt="Arm base CAD"><figcaption>Base with an upright mount for the servo that turns the base arm joint</figcaption></figure>
+              <figure class="fig"><img src="../media/robot-arm/web/cad-arm-joint.jpg" alt="Middle arm joint V3 CAD"><figcaption>Middle arm joint V3: the center cutout lets the next joint bolt straight onto the servo</figcaption></figure>
+            </div>
+            <figure class="fig"><img src="../media/robot-arm/web/cad-full-assembly.jpg" alt="Full robot arm CAD assembly"><figcaption>Full robot arm assembly in Fusion 360</figcaption></figure>
+            <figure class="fig"><img src="../media/robot-arm/web/drawing-assembly.jpg" alt="Engineering drawing of the claw assembly"><figcaption>Engineering drawing of the claw assembly</figcaption></figure>
+          </section>
+
+          <section id="electronics">
+            <h2>Electronics</h2>
+            <p>The arm uses five servo motors. Each has a red power wire, a black ground wire, and an orange signal wire that goes to the Arduino. I wired the servos <strong>in parallel</strong> to the battery supply. In parallel, every servo sees the same 6&nbsp;V. In series I would have needed 30&nbsp;V to run all five.</p>
+            <p>There were two ways to connect the Pi and the Arduino: directly through the GPIO pins with UART, or through a USB cable. The GPIO route needs a level shifter, because the Arduino's 5&nbsp;V logic could damage the Pi's 3.3&nbsp;V pins. I used USB instead. The Pi detects the Arduino as a serial device (<code>/dev/ttyACM0</code>), and no extra hardware is needed.</p>
+          </section>
+
+          <section id="code">
+            <h2>Software</h2>
+            <h3>Raspberry Pi (Python)</h3>
+            <p>I set up the Pi in a Python virtual environment and installed the <code>SpeechRecognition</code>, <code>PyAudio</code>, and <code>pyserial</code> libraries there. The script opens a serial connection to the Arduino, then loops forever: listen, convert speech to text, and send the text with a newline at the end.</p>
+<pre class="code"><span class="k">import</span> speech_recognition <span class="k">as</span> sr
+<span class="k">import</span> serial
+<span class="k">import</span> time
+
+arduino = serial.Serial(<span class="s">'/dev/ttyACM0'</span>, 9600)   <span class="c"># baud rate must match the Arduino</span>
+time.sleep(2)
+recognizer = sr.Recognizer()
+
+<span class="k">while</span> True:
+    <span class="k">with</span> sr.Microphone(device_index=2) <span class="k">as</span> source:
+        audio = recognizer.listen(source)
+        command = recognizer.recognize_google(audio)
+        print(command)
+        arduino.write((command + <span class="s">"\n"</span>).encode())</pre>
+            <h3>Arduino (C++)</h3>
+            <p>The Arduino sketch uses the <code>Servo</code> library and attaches each servo to its own pin. In <code>loop()</code> it waits for <code>Serial.available()</code>, then reads the incoming text with <code>Serial.readStringUntil('\n')</code> and calls <code>trim()</code> to remove stray spaces. A chain of <code>if</code> statements maps each spoken command to a servo angle.</p>
+            <div class="fig-grid">
+              <figure class="fig"><img src="../media/robot-arm/web/code-arduino.jpg" alt="Arduino servo setup code"><figcaption>Arduino setup: servo pins and serial at 9600 baud</figcaption></figure>
+              <figure class="fig"><img src="../media/robot-arm/web/code-commands.jpg" alt="Arduino command if statements"><figcaption>Command mapping: ten positions per joint, 18&deg; apart</figcaption></figure>
+            </div>
+          </section>
+
+          <section id="testing">
+            <h2>Testing</h2>
+            <p>I tested in stages, so when something broke I knew which part caused it. First a single servo from the Arduino IDE. Then voice control of the base. Then commanding each joint to a specific position.</p>
+            <div class="fig-grid three">
+              <figure class="fig"><video class="loop" src="../media/robot-arm/loops/base-servo-test.mp4" poster="../media/robot-arm/loops/base-servo-test-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Looping clip: base servo turning during a test from the Arduino IDE"></video><figcaption>Base servo test from the Arduino IDE</figcaption></figure>
+              <figure class="fig"><div class="yt" data-id="xOxrAyTvgQo" title="Robot arm test: rotating the base with a voice command"><button class="yt-play" type="button" aria-label="Play video: Robot arm test: rotating the base with a voice command"><img src="../media/robot-arm/web/poster-vid8.jpg" alt="" loading="lazy" decoding="async"></button></div><figcaption>Rotating the base with a voice command</figcaption></figure>
+              <figure class="fig"><div class="yt" data-id="KwcHqbD6zhU" title="Robot arm test: moving the arm to commanded positions"><button class="yt-play" type="button" aria-label="Play video: Robot arm test: moving the arm to commanded positions"><img src="../media/robot-arm/web/poster-vid11.jpg" alt="" loading="lazy" decoding="async"></button></div><figcaption>Moving the arm to commanded positions</figcaption></figure>
+            </div>
+          </section>
+
+          <section id="lessons">
+            <h2>Challenges &amp; lessons learned</h2>
+            <p><strong>Breaking the Pi's software setup.</strong> Raspberry Pi OS blocks installing Python packages system-wide and shows an <code>externally-managed-environment</code> error. While I tried fixes from several different sources, the installs conflicted and the Pi stopped working properly. I had to wipe the SD card, reinstall the OS, and start the code over.</p>
+            <figure class="fig"><img src="../media/robot-arm/web/pi-error.jpg" alt="Raspberry Pi terminal showing an externally-managed-environment error"><figcaption>The error that started it all</figcaption></figure>
+            <div class="callout">What I do now: install libraries inside a Python virtual environment (<code>venv</code>), reboot after every install, and change one thing at a time.</div>
+            <p><strong>UART vs. USB.</strong> My first attempt sent commands over UART through the GPIO pins, and it didn't work. Switching to PySerial over USB was simpler, needed no level shifter, and worked on the first try.</p>
+            <p><strong>Designing for printing.</strong> Straightening the arm joints and letting each joint mount directly to a servo cut down on print failures, extra parts, and parts colliding as the arm moved.</p>
+          </section>
+          <section id="final">
+            <h2>The finished arm</h2>
+            <div class="fig-grid">
+              <figure class="fig"><div class="yt" data-id="v3C9mRQwzx0" title="Finished robot arm moving between positions on voice commands"><button class="yt-play" type="button" aria-label="Play video: Finished robot arm moving between positions on voice commands"><img src="../media/robot-arm/web/poster-vid9.jpg" alt="" loading="lazy" decoding="async"></button></div><figcaption>Voice-controlled arm moving between commanded positions</figcaption></figure>
+              <figure class="fig"><div class="yt" data-id="hcm9Ntpv93c" title="Full demo of the voice-controlled robot arm"><button class="yt-play" type="button" aria-label="Play video: Full demo of the voice-controlled robot arm"><img src="../media/robot-arm/web/poster-vid10.jpg" alt="" loading="lazy" decoding="async"></button></div><figcaption>Full demo of the finished arm</figcaption></figure>
+            </div>
+            <div class="fig-grid tall">
+              <figure class="fig"><img src="../media/robot-arm/web/arm-final.jpg" alt="Assembled red 3D-printed robot arm"><figcaption>The assembled robot arm</figcaption></figure>
+              <figure class="fig"><img src="../media/robot-arm/web/arm-final-2.jpg" alt="Robot arm on the desk next to its Arduino"><figcaption>The arm with its Arduino and wiring</figcaption></figure>
+            </div>
+          </section>
+        </article>
+      </div>
+
+      <div class="pager">
+        <a class="btn" href="javascript:history.back()">&larr; Back</a>
+        <a class="btn" href="rc-car.html">Next: Random Motion RC Car &rarr;</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>&copy; <span id="year"></span> Edward Johnson</span>
+      <span><a href="mailto:nedjohnson2026@gmail.com">nedjohnson2026@gmail.com</a></span>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js?v=3"></script>
+</body>
+</html>

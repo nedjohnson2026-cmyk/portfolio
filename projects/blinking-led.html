@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blinking LED PCB | Edward Johnson</title>
+  <meta name="description" content="A two-transistor astable multivibrator that blinks four RGB LEDs, taken from breadboard to a custom PCB designed in KiCad and fabricated by JLCPCB.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css?v=4">
+</head>
+<body data-page="">
+
+  <header class="site-header">
+    <nav class="container nav" aria-label="Main">
+      <a href="../index.html" class="logo">EJ<span>_</span></a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="../index.html" data-nav="home">Home</a></li>
+        <li><a href="../electronics.html" data-nav="electronics">Electronics</a></li>
+        <li><a href="../3d-printing.html" data-nav="3d-printing">3D Printing</a></li>
+        <li><a href="../programming.html" data-nav="programming">Programming</a></li>
+        <li><a href="../finished-projects.html" data-nav="finished">Finished Projects</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="project-hero">
+      <div class="container">
+        <div class="path"><a href="../index.html">~</a> / projects / blinking-led</div>
+        <h1>Blinking LED PCB</h1>
+        <p class="lede">My first custom printed circuit board. Two transistors take turns switching on and off, blinking four RGB LEDs in pink with diagonal pairs flashing together. I built and tested it on a breadboard, then designed the board in KiCad and ordered it from JLCPCB.</p>
+        <ul class="chips"><li class="chip green">KiCad 10</li><li class="chip green">PCB Design</li><li class="chip green">Astable Multivibrator</li><li class="chip green">2N3904</li><li class="chip green">JLCPCB</li><li class="chip green">Breadboarding</li></ul>
+        <div class="spec">
+          <div><span class="k">Timeline</span><span class="v">Oct 2026 – present</span></div>
+          <div><span class="k">Status</span><span class="v">Rev 1 boards ordered; assembly next</span></div>
+          <div><span class="k">My role</span><span class="v">Solo project: circuit, schematic, layout</span></div>
+          <div><span class="k">Tools</span><span class="v">KiCad 10, Mouser, JLCPCB</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="writeup">
+        <nav class="toc" aria-label="Sections">
+          <a href="#overview">Overview</a>
+          <a href="#circuit">The circuit</a>
+          <a href="#parts">Parts</a>
+          <a href="#schematic">Schematic</a>
+          <a href="#layout">PCB layout</a>
+          <a href="#fab">Fabrication</a>
+          <a href="#next">Coming soon</a>
+        </nav>
+        <article>
+          <section id="overview">
+            <h2>Overview</h2>
+            <p>I first got the circuit working on a breadboard, powered by a 9&nbsp;V battery. Then I turned that design into a real PCB. Going from breadboard to board taught me a lot I hadn't run into before: matching footprints to real parts, choosing component ratings, design rules from the fab house, and keeping a schematic clean enough that someone else could read it.</p>
+            <figure class="fig"><div class="yt" data-id="N6ZGCFExz5w" title="Breadboard prototype of the blinking LED circuit running on a 9 V battery"><button class="yt-play" type="button" aria-label="Play video: Breadboard prototype of the blinking LED circuit running on a 9 V battery"><img src="../media/Blinking%20LED/web/poster-vid1.jpg" alt="" loading="lazy" decoding="async"></button></div><figcaption>The breadboard prototype blinking, powered by a 9 V battery</figcaption></figure>
+          </section>
+
+          <section id="circuit">
+            <h2>The circuit</h2>
+            <p>The circuit is a classic <strong>two-transistor astable multivibrator</strong>. Two 2N3904 NPN transistors are cross-coupled through 10&nbsp;&micro;F capacitors. When one transistor switches on, its capacitor yanks the other transistor's base negative and holds it off. The base then recharges through its 100&nbsp;k&Omega; resistor until that transistor switches on, and the cycle flips. The result is a steady back-and-forth with no microcontroller at all.</p>
+            <div class="flow">
+              <span>Q2 on &rarr; LED pair A lit</span><b>&harr;</b>
+              <span>C charges through 100 k&Omega;</span><b>&harr;</b>
+              <span>Q3 on &rarr; LED pair B lit</span>
+            </div>
+            <p>Each side drives two common-cathode RGB LEDs. Only the red and blue channels are used, which mixes to pink. With 100&nbsp;k&Omega; and 10&nbsp;&micro;F, each half-cycle lasts roughly 0.7&nbsp;seconds (t &asymp; 0.693&nbsp;&middot;&nbsp;R&nbsp;&middot;&nbsp;C).</p>
+          </section>
+
+          <section id="parts">
+            <h2>Parts</h2>
+            <p>I sourced every part from Mouser and matched each one to a KiCad footprint using its datasheet: body size, lead pitch, and lead diameter.</p>
+            <div class="table-wrap">
+              <table class="data">
+                <thead><tr><th>Part</th><th>Qty</th><th>Mouser part</th></tr></thead>
+                <tbody>
+                  <tr><td>2N3904 NPN transistor</td><td>2</td><td>Diotec Semiconductor 2N3904 (637-2N3904)</td></tr>
+                  <tr><td>10 &micro;F 16 V electrolytic capacitor</td><td>2</td><td>W&uuml;rth 860010372001</td></tr>
+                  <tr><td>100 k&Omega; &frac12; W metal oxide resistor</td><td>2</td><td>Yageo RSF-50JT-52-100K</td></tr>
+                  <tr><td>220 &Omega; &frac12; W metal oxide resistor</td><td>14</td><td>Stackpole RSPF12JT220R</td></tr>
+                  <tr><td>5 mm RGB LED, common cathode</td><td>4</td><td>Soldered 100105</td></tr>
+                  <tr><td>9 V battery snap (soldered to board)</td><td>1</td><td>Ordered from Amazon</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="callout"><strong>Lesson:</strong> my first parts list was badly oversized: a 3&nbsp;W wirewound resistor, a 2&nbsp;W 100&nbsp;k&Omega;, and a 300&nbsp;V transistor that was on backorder. The base resistors dissipate well under a milliwatt. Now I calculate the power each part actually handles before I order, and match the parts I validated on the breadboard.</div>
+          </section>
+
+          <section id="schematic">
+            <h2>Schematic</h2>
+            <figure class="fig"><img src="../media/Blinking%20LED/web/schematic.png" alt="KiCad schematic of the blinking LED circuit" style="background:#f5f4ef"><figcaption>Final Rev 1 schematic in KiCad</figcaption></figure>
+            <p>Reviewing the schematic turned up several mistakes that would have caused real problems on the board:</p>
+            <ul>
+              <li><strong>Wrong LED symbol.</strong> I first used a common-<em>anode</em> symbol, but my LEDs are common-<em>cathode</em>, with the shared lead on pin 2. I switched to <code>LED_RKGB</code>, which matches the physical pin order (red, cathode, green, blue).</li>
+              <li><strong>Reversed capacitor.</strong> C5 was mirrored, with its + terminal on the transistor base. In this circuit the base side swings negative, so + has to face the collector. A backwards electrolytic can still run on the bench while it slowly degrades, so now I check every polarized part.</li>
+              <li><strong>Resistors that did nothing.</strong> Two 10&nbsp;&Omega; resistors were in series with 220&nbsp;&Omega; ones. 10&nbsp;&Omega; is less than the 220&nbsp;&Omega; part's own &plusmn;5% tolerance (&plusmn;11&nbsp;&Omega;), so I removed them.</li>
+              <li><strong>LEDs sharing a resistor.</strong> LEDs in parallel on one resistor share current unevenly, so their brightness and color differ. I gave each LED color its own resistor.</li>
+              <li><strong>No way to connect power.</strong> On a breadboard, +9&nbsp;V and GND come from the rails. A PCB needs a real connector, so I added J1 for the battery wires, plus <code>PWR_FLAG</code> symbols so the electrical rules check passes.</li>
+            </ul>
+          </section>
+
+          <section id="layout">
+            <h2>PCB layout</h2>
+            <figure class="fig"><img src="../media/Blinking%20LED/web/pcb-layout.png" alt="KiCad PCB layout with front and back copper traces" style="background:#001023"><figcaption>Rev 1 layout: front copper in red, back copper in blue. 60 pads, 0 unrouted nets.</figcaption></figure>
+            <p>I set up the design rules from JLCPCB's 2-layer capabilities. I learned that design rules come from the fab, while footprints come from the parts. The fab's minimums are the floor for the design rule check (DRC), not the widths to actually route with.</p>
+            <div class="table-wrap">
+              <table class="data">
+                <thead><tr><th>Rule</th><th>Value</th></tr></thead>
+                <tbody>
+                  <tr><td>Min track width / clearance (fab limit)</td><td>0.127 mm</td></tr>
+                  <tr><td>Min via drill / diameter</td><td>0.3 mm / 0.5 mm</td></tr>
+                  <tr><td>Min annular ring</td><td>0.15 mm</td></tr>
+                  <tr><td>Default signal traces</td><td>0.3 mm</td></tr>
+                  <tr><td>Power traces (+9 V, GND)</td><td>0.5 mm</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <h3>Cleaning up the board</h3>
+            <ul>
+              <li><strong>DRC errors on tight footprints.</strong> The TO-92 transistors and RGB LEDs have leads only 1.27&nbsp;mm apart, which caused 35 clearance and annular-ring errors. I didn't lower the board-wide clearance to hide them, because that would also hide real problems. Final DRC: zero errors and zero unconnected items.</li>
+              <li><strong>Trace angles.</strong> I rerouted traces to 0&deg;, 45&deg;, and 90&deg; only.</li>
+              <li><strong>A stray track</strong> ran around the entire board edge. Deleting it cleared the last unconnected item.</li>
+              <li><strong>Silkscreen.</strong> I removed confusing value labels but kept "100k" on the two 100&nbsp;k&Omega; resistors, the parts most likely to get swapped during assembly. I also added real + and &minus; marks at the battery pads, since net names shown in KiCad pads aren't printed on the board.</li>
+              <li><strong>Placement.</strong> I placed the LEDs so diagonal pairs blink together. That looks better, but it meant longer traces. Next time I'll group each half of the mirrored circuit together.</li>
+            </ul>
+          </section>
+
+          <section id="fab">
+            <h2>Fabrication</h2>
+            <p>I exported Gerbers (copper, silkscreen, solder mask, and board outline layers) and Excellon drill files from KiCad. I ordered the boards from JLCPCB: 2 layers, 1.6&nbsp;mm thick, HASL finish, green solder mask, 1&nbsp;oz copper. Boards and parts were ordered on October 27, 2026.</p>
+            <p>Planned assembly order: resistors first, then the transistors and capacitors, then the LEDs last. Before connecting the battery, I'll check with a multimeter that +9&nbsp;V and GND aren't shorted.</p>
+          </section>
+
+          <section id="next">
+            <h2>Coming soon</h2>
+            <div class="callout">Assembly, testing results (blink rate, color, current draw), and photos of the finished board are coming soon.</div>
+          </section>
+        </article>
+      </div>
+
+      <div class="pager">
+        <a class="btn" href="javascript:history.back()">&larr; Back</a>
+        <a class="btn" href="../electronics.html">All electronics projects</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>&copy; <span id="year"></span> Edward Johnson</span>
+      <span><a href="mailto:nedjohnson2026@gmail.com">nedjohnson2026@gmail.com</a></span>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js?v=3"></script>
+</body>
+</html>

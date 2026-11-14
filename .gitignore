@@ -1,0 +1,38 @@
+# Large original media lives outside the site in ../video-originals.
+# Videos are embedded from YouTube; only small compressed loop clips are tracked.
+*.mov
+*.MOV
+*.m4v
+*.avi
+*.mkv
+*.webm
+*.mp4
+!media/*/loops/*.mp4
+
+# Full-resolution originals (web-sized copies are used on the site)
+media/*-original.*
+
+# Local tooling
+.claude/
+
+# Secrets and credentials (never commit)
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.*
+credentials*.json
+*service-account*.json
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+.vscode/
+.idea/
+
+# Office temp files
+~$*

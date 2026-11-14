@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Motion RC Car | Edward Johnson</title>
+  <meta name="description" content="A universally designed 'runaway' toy car with Arduino-controlled random steering, built for a Rutgers engineering design project.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css?v=4">
+</head>
+<body data-page="">
+
+  <header class="site-header">
+    <nav class="container nav" aria-label="Main">
+      <a href="../index.html" class="logo">EJ<span>_</span></a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="../index.html" data-nav="home">Home</a></li>
+        <li><a href="../electronics.html" data-nav="electronics">Electronics</a></li>
+        <li><a href="../3d-printing.html" data-nav="3d-printing">3D Printing</a></li>
+        <li><a href="../programming.html" data-nav="programming">Programming</a></li>
+        <li><a href="../finished-projects.html" data-nav="finished">Finished Projects</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="project-hero">
+      <div class="container">
+        <div class="path"><a href="../index.html">~</a> / projects / rc-car</div>
+        <h1>Random Motion RC Car</h1>
+        <p class="lede">A "runaway" toy car for kids ages 3–9 that drives itself and turns in random directions, so kids chase it and build motor skills and hand-eye coordination along the way. I designed it in Onshape and programmed it on an Arduino for a Rutgers engineering design project.</p>
+        <ul class="chips"><li class="chip green">Arduino</li><li class="chip green">Onshape</li><li class="chip green">Servo steering</li><li class="chip green">DC motor</li><li class="chip green">3D Printing</li><li class="chip green">Universal Design</li></ul>
+        <div class="spec">
+          <div><span class="k">Timeline</span><span class="v">Fall 2025 (9 weeks)</span></div>
+          <div><span class="k">Status</span><span class="v">Complete</span></div>
+          <div><span class="k">My role</span><span class="v">CAD lead, Arduino programming &amp; electronics (team of 4)</span></div>
+          <div><span class="k">Tools</span><span class="v">Onshape, Bambu Studio, Arduino, PLA</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="writeup">
+        <nav class="toc" aria-label="Sections">
+          <a href="#overview">Overview</a>
+          <a href="#process">Design process</a>
+          <a href="#design">CAD &amp; mechanics</a>
+          <a href="#electronics">Electronics &amp; code</a>
+          <a href="#testing">Testing</a>
+          <a href="#lessons">Lessons learned</a>
+          <a href="#final">Finished project</a>
+        </nav>
+        <article>
+          <section id="overview">
+            <h2>Overview</h2>
+            <p>Our team was asked to design a toy following the <strong>universal design principles</strong>, so that users of all abilities can use it. Younger children have limited hand-eye coordination, so we built a toy that runs away from the child and changes direction at random. To catch it, the child has to crawl or walk after it and predict where it's going next. That builds motor, cognitive, and problem-solving skills.</p>
+            <p>I took the lead on the Onshape CAD model, the Arduino programming, and integrating the electronics into the car.</p>
+          </section>
+
+          <section id="process">
+            <h2>Design process</h2>
+            <p>We started with research and a needs assessment. We grouped user needs in an affinity diagram (cognitive skill development, interactive learning, problem solving, creativity, motor skills, and safety), then scored concepts in a decision matrix. Other ideas included a physical activity toy, an audio-cue toy, and a wind-up water toy. The "chase me" car scored highest overall, especially on being faster than crawling speed and on cognitive development.</p>
+            <div class="fig-grid">
+              <figure class="fig"><img src="../media/rc-car/web/affinity-diagram.jpg" alt="Affinity diagram of user needs"><figcaption>Affinity diagram of user needs</figcaption></figure>
+              <figure class="fig"><img src="../media/rc-car/web/decision-matrix.jpg" alt="Decision matrix comparing concepts"><figcaption>Decision matrix used to choose the concept</figcaption></figure>
+            </div>
+            <div class="table-wrap">
+              <table class="data">
+                <thead><tr><th>Criteria (goals)</th><th>Constraints (fixed)</th></tr></thead>
+                <tbody>
+                  <tr><td>Cognitive skill development</td><td>At least 2 mechanical functions</td></tr>
+                  <tr><td>Functionality &amp; visual design</td><td>At least 1 electrical function</td></tr>
+                  <tr><td>Safety &amp; simplicity</td><td>Fits in 4&Prime; &times; 4&Prime; &times; 6&Prime;</td></tr>
+                  <tr><td>Entertainment</td><td>No slower than crawling speed; safe to use</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="design">
+            <h2>CAD &amp; mechanics</h2>
+            <p>The car has four main parts, all modeled in Onshape:</p>
+            <ul>
+              <li><strong>Motor assembly:</strong> a DC motor drives a gear train that spins the rear axle.</li>
+              <li><strong>Servo steering:</strong> a linkage based on how RC cars steer. All the holes are pin joints, so both front wheels turn together as the servo rotates.</li>
+              <li><strong>Base:</strong> everything mounts to it, and it detaches from the body so the gears, circuit, and servo are easy to reach.</li>
+              <li><strong>Body:</strong> loosely styled on a sedan, in two bright colors, so kids can spot it easily and it sparks their imagination.</li>
+            </ul>
+            <div class="fig-grid">
+              <figure class="fig"><img src="../media/rc-car/web/cad-full-assembly.jpg" alt="Full car CAD assembly in Onshape" style="object-fit:contain;background:#fff"><figcaption>Full car assembly</figcaption></figure>
+              <figure class="fig"><img src="../media/rc-car/web/cad-underside.jpg" alt="Underside of the car showing steering linkage" style="object-fit:contain;background:#fff"><figcaption>Underside: steering linkage and drivetrain</figcaption></figure>
+            </div>
+            <p>I sliced the parts in Bambu Studio and printed them in PLA (62&nbsp;g total). Rigid joints use tight-fitting pins secured with hot glue. Rotating joints use free pins with glued caps so the pins can't slide out. The biggest change between versions was a large cutout in the top of the body, which gave the motor, servo, and Arduino the clearance they needed.</p>
+            <figure class="fig"><img src="../media/rc-car/web/cad-body.jpg" alt="Car body being modeled in Onshape"><figcaption>Modeling the body in Onshape</figcaption></figure>
+          </section>
+
+          <section id="electronics">
+            <h2>Electronics &amp; code</h2>
+            <p>An Arduino controls a DC motor and a servo from a single push button, which keeps the toy simple for a child to use. The Arduino detects the voltage change when the button is pressed:</p>
+            <ul>
+              <li><strong>Press once:</strong> the DC motor runs continuously, and the servo steers to a <strong>random angle</strong> from a random number generator, so the car's path is different every time.</li>
+              <li><strong>Press again:</strong> everything stops.</li>
+            </ul>
+            <p>The components were wired in parallel to keep the required voltage down. A 3&nbsp;V and a 9&nbsp;V battery were connected in series to supply enough voltage for the system.</p>
+            <div class="fig-grid">
+              <figure class="fig"><div class="yt" data-id="Uaneg70KOlE" title="RC car electronics bench test before assembly"><button class="yt-play" type="button" aria-label="Play video: RC car electronics bench test before assembly"><img src="../media/rc-car/web/poster-vid2.jpg" alt="" loading="lazy" decoding="async"></button></div><figcaption>Bench-testing the electronics before putting them in the car</figcaption></figure>
+              <figure class="fig"><video class="loop" src="../media/rc-car/loops/random-steering.mp4" poster="../media/rc-car/loops/random-steering-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Looping clip: random steering running in the assembled car"></video><figcaption>Random steering running in the assembled car</figcaption></figure>
+            </div>
+          </section>
+
+          <section id="testing">
+            <h2>Testing</h2>
+            <p>We tested speed on different surfaces and battery levels, and dropped the car from three heights.</p>
+            <div class="table-wrap">
+              <table class="data">
+                <thead><tr><th>Test</th><th>Condition</th><th>Result</th></tr></thead>
+                <tbody>
+                  <tr><td>Speed</td><td>Full battery</td><td>0.5 m/s</td></tr>
+                  <tr><td>Speed</td><td>Low battery</td><td>0.1 m/s</td></tr>
+                  <tr><td>Surface</td><td>Carpet vs. smooth floor</td><td>3–5&times; slower on carpet</td></tr>
+                  <tr><td>Drop</td><td>2&Prime; and 4&Prime;</td><td>No damage</td></tr>
+                  <tr><td>Drop</td><td>6&Prime;</td><td>Body intact, servo linkage broke</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>The car met the size and function constraints. It also beats the crawling speed of younger kids, though older kids in the age range can probably keep up.</p>
+          </section>
+
+          <section id="lessons">
+            <h2>Lessons learned</h2>
+            <ul>
+              <li><strong>Weight distribution matters.</strong> The motor, Arduino, and servo pressed down hard on the base, which made rough surfaces difficult. We added double-sided tape to the tires for traction.</li>
+              <li><strong>Measure before you model.</strong> Guessing the dimensions of the motor and servo made the body hard to size. Getting tolerances right took several print iterations.</li>
+              <li><strong>Material choice.</strong> PLA with thin infill cracked under stress. A stronger material would hold up better for a kids' toy.</li>
+            </ul>
+            <div class="callout">Next version: a stronger motor and gearing for carpet, better wheels, a fully enclosed top, and possibly a remote-control mode.</div>
+            <figure class="fig"><img src="../media/rc-car/web/car-bench.jpg" alt="Laptop with CAD model next to the car electronics"><figcaption>CAD and electronics side by side during development</figcaption></figure>
+          </section>
+          <section id="final">
+            <h2>The finished car</h2>
+            <div class="fig-grid three tall">
+              <figure class="fig"><div class="yt" data-id="dL3steN2pYw" title="Finished RC car steering to random angles"><button class="yt-play" type="button" aria-label="Play video: Finished RC car steering to random angles"><img src="../media/rc-car/web/poster-vid4.jpg" alt="" loading="lazy" decoding="async"></button></div><figcaption>Random steering in action</figcaption></figure>
+              <figure class="fig"><img src="../media/rc-car/web/car-final.jpg" alt="Finished 3D-printed runaway toy car"><figcaption>The finished car</figcaption></figure>
+              <figure class="fig"><img src="../media/rc-car/web/car-final-2.jpg" alt="Top view of the car showing the servo and motor"><figcaption>Top view showing the servo and drive motor</figcaption></figure>
+            </div>
+          </section>
+        </article>
+      </div>
+
+      <div class="pager">
+        <a class="btn" href="robot-arm.html">&larr; Voice Controlled Robot Arm</a>
+        <a class="btn" href="../finished-projects.html">All finished projects</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>&copy; <span id="year"></span> Edward Johnson</span>
+      <span><a href="mailto:nedjohnson2026@gmail.com">nedjohnson2026@gmail.com</a></span>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js?v=3"></script>
+</body>
+</html>
