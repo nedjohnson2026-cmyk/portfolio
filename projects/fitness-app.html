@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fitness App | Edward Johnson</title>
-  <meta name="description" content="A mobile app for tracking calories, workouts, and water intake, with personalized workout and calorie recommendations.">
+  <title>ClutchFit | Edward Johnson</title>
+  <meta name="description" content="ClutchFit: a full-stack AI fitness and nutrition app built with React Native/Expo, Node.js, and Supabase, submitted to the Apple App Store.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css?v=4">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css?v=8">
 </head>
 <body data-page="">
 
@@ -29,61 +29,129 @@
   <main>
     <div class="project-hero">
       <div class="container">
-        <div class="path"><a href="../index.html">~</a> / projects / fitness-app</div>
-        <h1>Fitness App</h1>
-        <p class="lede">A mobile fitness app for tracking calories, workouts, and daily water intake. A personalization algorithm generates workout recommendations and calorie targets. I'm currently working on publishing it to the Apple App Store.</p>
-        <ul class="chips"><li class="chip green">Node.js</li><li class="chip green">React Native</li><li class="chip green">AI Integration</li></ul>
+        <div class="path"><a href="../index.html">~</a> / projects / clutchfit</div>
+        <h1>ClutchFit</h1>
+        <p class="lede">An AI-assisted fitness and nutrition app that I designed and built end to end. It generates personalized training programs, logs workouts offline, tracks calories and macros, and keeps people motivated with XP, quests, streaks, and challenges with friends. <em>Train smarter, level up.</em></p>
+        <ul class="chips"><li class="chip green">React Native</li><li class="chip green">Expo</li><li class="chip green">TypeScript</li><li class="chip green">Node.js / Express</li><li class="chip green">Supabase (PostgreSQL)</li><li class="chip green">RevenueCat</li><li class="chip green">EAS / App Store</li></ul>
         <div class="spec">
-          <div><span class="k">Year</span><span class="v">Ongoing</span></div>
-          <div><span class="k">Status</span><span class="v">In progress</span></div>
-          <div><span class="k">My role</span><span class="v">Full-stack development</span></div>
-          <div><span class="k">Tools</span><span class="v">Node.js, React Native, AI APIs</span></div>
+          <div><span class="k">Platform</span><span class="v">iOS &amp; iPadOS (Android planned)</span></div>
+          <div><span class="k">Status</span><span class="v">Phase 1 complete; in App Store review</span></div>
+          <div><span class="k">My role</span><span class="v">Solo developer: app, backend, database, release</span></div>
+          <div><span class="k">Model</span><span class="v">Freemium + Premium subscription</span></div>
         </div>
       </div>
     </div>
 
     <div class="container">
-      <!-- FEATURE MEDIA: replace with <img src="../media/fitness-app/cover.jpg" alt=""> or <video src="../media/fitness-app/demo.mp4" controls></video> -->
-      <div class="feature-media"><div class="media-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg>media/fitness-app/cover.jpg</div></div>
-
       <div class="writeup">
-        <nav class="toc" aria-label="Sections"><a href="#overview">Overview</a><a href="#design">Design</a><a href="#build">Build &amp; electronics</a><a href="#code">Software</a><a href="#results">Results &amp; lessons learned</a><a href="#gallery">Gallery</a></nav>
+        <nav class="toc" aria-label="Sections">
+          <a href="#overview">Overview</a>
+          <a href="#stack">Tech stack</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#features">Features</a>
+          <a href="#programs">Program generator</a>
+          <a href="#release">App Store release</a>
+          <a href="#roadmap">What's next</a>
+          <a href="#screens">Screenshots</a>
+        </nav>
         <article>
           <section id="overview">
             <h2>Overview</h2>
-            <div class="coming-soon">// Write-up coming soon.</div>
-          </section>
-          <section id="design">
-            <h2>Design</h2>
-            <div class="coming-soon">// Write-up coming soon.</div>
-          </section>
-          <section id="build">
-            <h2>Build &amp; electronics</h2>
-            <div class="coming-soon">// Write-up coming soon.</div>
-          </section>
-          <section id="code">
-            <h2>Software</h2>
-            <div class="coming-soon">// Write-up coming soon.</div>
-          </section>
-          <section id="results">
-            <h2>Results &amp; lessons learned</h2>
-            <div class="coming-soon">// Write-up coming soon.</div>
-          </section>
-          <section id="gallery">
-            <h2>Gallery</h2>
-            <div class="gallery">
-          <figure><div class="media-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg>media/fitness-app/photo-1.jpg</div></figure>
-          <figure><div class="media-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg>media/fitness-app/photo-2.jpg</div></figure>
-          <figure><div class="media-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg>media/fitness-app/photo-3.jpg</div></figure>
-          <figure><div class="media-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg>media/fitness-app/photo-4.jpg</div></figure>
+            <p>Most fitness apps do one thing: log workouts <em>or</em> count calories <em>or</em> give you a plan. I wanted one app that does all three for people 13 and up who want structured programming, nutrition tracking, and a reason to keep showing up. I built the whole stack myself: the mobile app, the API, the database, subscriptions, and the App Store release.</p>
+            <div class="stat-row">
+              <div><b>~75</b><span>database tables</span></div>
+              <div><b>1,301</b><span>exercises seeded</span></div>
+              <div><b>19</b><span>nightly analytics jobs</span></div>
+              <div><b>33</b><span>quests + 30 milestones</span></div>
             </div>
+          </section>
+
+          <section id="stack">
+            <h2>Tech stack</h2>
+            <div class="table-wrap">
+              <table class="data">
+                <thead><tr><th>Layer</th><th>Technology</th></tr></thead>
+                <tbody>
+                  <tr><td>Mobile app</td><td>React Native + Expo (Expo Router), TypeScript. Expo SDK 57 / React Native 0.86</td></tr>
+                  <tr><td>On-device storage</td><td>expo-sqlite for offline workout logging, AsyncStorage for themes and flags</td></tr>
+                  <tr><td>Backend</td><td>Node.js + Express + TypeScript, hosted on Railway</td></tr>
+                  <tr><td>Database &amp; auth</td><td>Supabase: PostgreSQL with Row Level Security, Supabase Auth (email + Google)</td></tr>
+                  <tr><td>Billing</td><td>RevenueCat (monthly and annual Premium)</td></tr>
+                  <tr><td>Data &amp; AI</td><td>ExerciseDB, Spoonacular, OpenAI vision (food scanner)</td></tr>
+                  <tr><td>Release</td><td>EAS Build + EAS Submit, App Store Connect</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="architecture">
+            <h2>Architecture</h2>
+            <div class="flow">
+              <span>Expo app<br>(SQLite offline log)</span><b>&rarr;</b>
+              <span>Express API<br>on Railway</span><b>&rarr;</b>
+              <span>Supabase<br>PostgreSQL + RLS</span><b>&larr;</b>
+              <span>Nightly job<br>scheduler</span>
+            </div>
+            <ul>
+              <li><strong>Offline-first workouts.</strong> An active session writes every set to SQLite on the phone first, then syncs to Supabase when you tap "Save &amp; Finish." A dropped signal at the gym never loses a workout.</li>
+              <li><strong>Security by default.</strong> Row Level Security is on for every table, so users can only read their own data. The privileged service key stays on the server, never in the app.</li>
+              <li><strong>Automatic setup.</strong> A database trigger on signup creates each user's profile, settings, level, and streak rows, so a new account is ready immediately.</li>
+              <li><strong>18 SQL migrations</strong> built the schema step by step: auth, subscriptions, exercises, programs, sessions, nutrition, recipes, analytics, social, quests, and notifications.</li>
+            </ul>
+          </section>
+
+          <section id="features">
+            <h2>Features</h2>
+            <div class="feature-grid">
+              <div class="panel"><h3>Onboarding &amp; targets</h3><p>A multi-step onboarding collects goals, body stats, experience, and diet, then calculates calorie and macro targets with the Mifflin-St Jeor equation.</p></div>
+              <div class="panel"><h3>Workout logging</h3><p>A readiness check, then weight, reps, and RPE for every set, an auto-starting rest timer, custom workouts, and a summary of duration, volume, and sets.</p></div>
+              <div class="panel"><h3>Exercise library</h3><p>1,301 searchable exercises, custom exercises, 39 substitution pairs, and 8 guided templates (5/3/1, Push Pull Legs, Starting Strength, and more).</p></div>
+              <div class="panel"><h3>Nutrition &amp; recipes</h3><p>A daily calorie bar, macro bars, water tracking, four meal sections, food search, weekly weigh-ins, and a recipe browser with tag filters.</p></div>
+              <div class="panel"><h3>Progress analytics</h3><p>19 nightly jobs compute streaks, XP, leaderboards, and body composition. Premium charts show volume and calorie trends over time.</p></div>
+              <div class="panel"><h3>Quests, XP &amp; levels</h3><p>33 quests from bronze to platinum, 30 milestones (10 of them secret), badges, and three streak counters: workout, calories, and protein.</p></div>
+              <div class="panel"><h3>Social</h3><p>Friends, head-to-head challenges with leaderboards, and an activity feed with emoji reactions and preset encouragements.</p></div>
+              <div class="panel"><h3>Subscriptions &amp; reminders</h3><p>A RevenueCat paywall (Premium $7.99/mo or $79.99/yr), six themes, and local reminders for workouts and streaks at risk.</p></div>
+            </div>
+          </section>
+
+          <section id="programs">
+            <h2>Program generator</h2>
+            <p>The program builder uses <strong>Daily Undulating Periodization (DUP)</strong>, which rotates intensity and rep ranges day to day instead of week to week. I wrote it as custom algorithmic code, not an AI prompt. It generates a full hierarchy: a <strong>macrocycle</strong>, its <strong>microcycles</strong>, the program weeks, and every planned workout. The app displays these on macrocycle and week-plan screens.</p>
+            <div class="callout">Right now the generator builds the first three weeks (the accumulation phase) using placeholder exercise picks. Full 12-week phase logic and exercise selection by muscle group are next.</div>
+          </section>
+
+          <section id="release">
+            <h2>App Store release</h2>
+            <p>Shipping to the App Store taught me more than building the features did. Apple rejected the app several times, and each rejection meant reading crash logs and changing how the app starts up:</p>
+            <ul>
+              <li><strong>Broken support and privacy links (Guideline 1.5).</strong> I fixed them by publishing real Privacy Policy, Terms, and EULA pages on GitHub Pages.</li>
+              <li><strong>A launch crash on iPad (Guideline 2.1).</strong> I wrapped native initialization in error handling, added an error boundary, and sent the reviewers detailed notes plus a demo video.</li>
+              <li><strong>Crashes on iOS/iPadOS 27.</strong> Apple's crash logs traced the crash to native modules starting up. I disabled React Native's New Architecture, moved RevenueCat out of app launch, replaced a native slider with a pure-JavaScript one, and upgraded to Expo SDK 57 for a newer JavaScript engine.</li>
+              <li><strong>Build tooling problems.</strong> I fixed dependency conflicts, build numbers App Store Connect rejected as already used, a Node version mismatch, and a firewall blocking Expo's local dev server.</li>
+            </ul>
+            <div class="callout"><strong>Lessons:</strong> test on the newest OS before submitting, keep the native plugin config minimal, make native-module startup failures non-fatal, and ask App Review for crash logs early.</div>
+          </section>
+
+          <section id="roadmap">
+            <h2>What's next</h2>
+            <ul>
+              <li>App Store approval, then Apple Sign-In and an Android release on Google Play</li>
+              <li>The AI food scanner (the screen and the 5-scans-per-month free limit are already built)</li>
+              <li>The full 12-week program generator, plus exercise GIFs</li>
+              <li>Version 2 ideas: Apple Health integration, barcode scanning, live workout sessions, and team plans</li>
+            </ul>
+          </section>
+
+          <section id="screens">
+            <h2>Screenshots</h2>
+            <div class="callout">App screenshots are coming soon: workout session, program macrocycle, nutrition, profile, quests, and analytics.</div>
           </section>
         </article>
       </div>
 
       <div class="pager">
         <a class="btn" href="javascript:history.back()">&larr; Back</a>
-        <a class="btn" href="../index.html#explore">All categories</a>
+        <a class="btn" href="../programming.html">All programming projects</a>
       </div>
     </div>
   </main>
